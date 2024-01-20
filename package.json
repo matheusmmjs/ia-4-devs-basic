@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gpt": "tsx watch --env-file .env src/gpt.ts",
+    "search": "tsx watch --env-file .env src/search.ts",
+    "loader": "tsx watch --env-file .env src/loader.ts"
   },
   "keywords": [],
   "author": "",

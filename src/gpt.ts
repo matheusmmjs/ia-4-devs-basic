@@ -11,20 +11,20 @@ const openAiChat = new ChatOpenAI({
 
 const prompt = new PromptTemplate({
   template: `
-    Voce responde perguntas sobre programacao.
-    O usuario esta assistindo um curso com varias aulas.
-    Use o conteudo das transcricoes das aulas abaixo para responde
-    a pergunta do usuario.
-    Se a resposta nao for encontrada nas transcricoes, responda que
-    voce nao sabe, nao tente inventar uma resposta.
+    Use o conteudo abaixo para responder a pergunta do usuario.
+    Se a resposta nao tiver no conteudo, responda que voce nao sabe, nao tente inventar uma resposta!
     Se possivel, inclua exemplos de codigo. 
-    Transcricoes: {context}
-    Pergunta: {question}
+    
+    Conteudo: 
+    {context}
+    
+    Pergunta: 
+    {question}
   `.trim(),
   inputVariables: ['context', 'question']
 })
 
-const chain = RetrievalQAChain.fromLLM(openAiChat, redisVectorStore.asRetriever(3), {
+const chain = RetrievalQAChain.fromLLM(openAiChat, redisVectorStore.asRetriever(2), {
   prompt,
   // returnSourceDocuments: true,
   // verbose: true
